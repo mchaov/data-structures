@@ -1,3 +1,3 @@
-# Typescript + React starting project
+# Data structure
 
-This repo provides simple project bootstrap split with the posibility to split into multiple packages.
+Raw implementation + Observable adapters for MobX, RxJS.
