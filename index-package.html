@@ -17,19 +17,17 @@
     <title>App</title>
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" type="text/css" href="/dist/package/index.dev.css" />
+    <link rel="stylesheet" type="text/css" href="/dist/package/index.css" />
 
 </head>
 
 <body>
     <div id="app"></div>
-    <script async src="/dist/package/manifest.dev.js"></script>
-    <script async src="/dist/package/vendor.dev.js"></script>
-    <script async src="/dist/package/index.dev.js"></script>
+    <script async src="/dist/package/manifest.js"></script>
+    <!-- <script async src="/dist/package/vendor.js"></script> -->
+    <script async src="/dist/package/index.js"></script>
     <script>
-        window.addEventListener("load", () => {
-            __APP.init();
-        })
+        window.addEventListener("load", () => __APP.init)
     </script>
 </body>
 

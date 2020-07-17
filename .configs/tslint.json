@@ -70,8 +70,6 @@
         "no-console": {
             "options": [
                 "debug",
-                "info",
-                "log",
                 "time",
                 "timeEnd",
                 "trace"
