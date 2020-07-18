@@ -55,8 +55,6 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         if (this.maxSize !== 0 && this.count > this.maxSize) { throw new Error("queue overflow :)"); }
 
         this.data.splice(this.getIndex(element), 0, element);
-        // this.data.push(element);
-        // this.data.sort(this.priorityPredicate);
     }
 
     changePriority(priorityPredicate: PriorityQueuePredicate<T>) {
