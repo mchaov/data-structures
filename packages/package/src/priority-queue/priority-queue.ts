@@ -4,6 +4,7 @@ export type PriorityQueuePredicate<T> = (a: T, b: T) => number;
 
 export type PriorityQueueOptions<T> = {
     maxSize: number
+    initialData: T[]
     priorityPredicate: PriorityQueuePredicate<T>
 }
 
@@ -32,6 +33,11 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         this.priorityPredicate = typeof options.priorityPredicate === "undefined" ?
             ((a, b) => a - b) as any : // refactor not to assume default is number but to throw on missing predicate
             options.priorityPredicate;
+
+        if (options.initialData) {
+            this.data = options.initialData;
+            this.sort();
+        }
     }
 
     get count() { return this.data.length; }
@@ -49,10 +55,16 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         if (this.maxSize !== 0 && this.count > this.maxSize) { throw new Error("queue overflow :)"); }
 
         this.data.splice(this.getIndex(element), 0, element);
+        // this.data.push(element);
+        // this.data.sort(this.priorityPredicate);
     }
 
     changePriority(priorityPredicate: PriorityQueuePredicate<T>) {
         this.priorityPredicate = priorityPredicate;
+        this.sort();
+    }
+
+    private sort() {
         this.data.sort(this.priorityPredicate);
     }
 

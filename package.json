@@ -4,7 +4,7 @@
   "description": "Starting point for projects with react and typescript.",
   "scripts": {
     "webpack:dev": "webpack --config ./.configs/webpack.config.package.dev.js -w",
-    "webpack": "webpack --config ./.configs/webpack.config.package.prod.js -p",
+    "webpack": "webpack --config ./.configs/webpack.config.package.prod.js -p -w",
     "test": "jest --bail --config ./.configs/jest.config.package.js",
     "test:coverage": "jest --coverage --bail --config ./.configs/jest.config.package.js",
     "start": "ws --spa index-package.html -p 8080 -z",

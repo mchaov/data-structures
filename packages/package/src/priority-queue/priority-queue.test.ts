@@ -76,6 +76,20 @@ describe("PriorityQueue Main Suite", () => {
 
         expect(q.peek()).toEqual([4, 3, 2, 1]);
     });
+
+    it("Initial data set", () => {
+        const items = [2, 1, 4, 3];
+        const q = new PriorityQueue<number>({
+            initialData: items
+        });
+
+        expect(q.count).toEqual(4);
+        expect(q.contains(2)).toEqual(true);
+        expect(q.contains(5)).toEqual(false);
+        expect(q.peek()).toEqual([1, 2, 3, 4]);
+        expect(q.dequeue()).toEqual(1);
+        expect(q.count).toEqual(3);
+    });
 });
 
 describe("PriorityQueue Saturation Suite", () => {
