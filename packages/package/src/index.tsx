@@ -8,7 +8,10 @@ import { getTestData } from "./index.data";
 
 
 let time = performance.now();
-var pq = new PriorityQueue<number>({ initialData: getTestData(5000000) });
+var pq = new PriorityQueue<number>({
+    initialData: getTestData(5000000),
+    priorityPredicate: (a, b) => a - b
+});
 // testData.forEach(x => pq.enqueue(x));
 console.log(`Added ${pq.count} elements to priority queue in ${performance.now() - time}`);
 

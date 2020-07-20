@@ -3,12 +3,18 @@ import { PriorityQueue } from "./priority-queue";
 describe("PriorityQueue Main Suite", () => {
     it("Initializes without error", () => {
         expect(typeof PriorityQueue).toBe("function");
-        expect(new PriorityQueue()).toBeInstanceOf(PriorityQueue);
+
+        expect(new PriorityQueue<number>({
+            priorityPredicate: () => 1
+        })).toBeInstanceOf(PriorityQueue);
+        expect(() => new PriorityQueue()).toThrow();
     });
 
     it("Enqueues items T:number ASC", () => {
         const items = [2, 1, 4, 3];
-        const q = new PriorityQueue();
+        const q = new PriorityQueue<number>({
+            priorityPredicate: (a: number, b: number) => a - b
+        });
 
         items.forEach(x => q.enqueue(x));
 
@@ -38,7 +44,9 @@ describe("PriorityQueue Main Suite", () => {
 
     it("Clear queue", () => {
         const items = [2, 1, 4, 3];
-        const q = new PriorityQueue();
+        const q = new PriorityQueue<number>({
+            priorityPredicate: (a: number, b: number) => a - b
+        });
 
         items.forEach(x => q.enqueue(x));
 
@@ -48,13 +56,18 @@ describe("PriorityQueue Main Suite", () => {
     });
 
     it("Dequeue on empty queue throws", () => {
-        const q = new PriorityQueue();
+        const q = new PriorityQueue<number>({
+            priorityPredicate: (a: number, b: number) => a - b
+        });
 
         expect(() => q.dequeue()).toThrow();
     });
 
     it("Enque on limited queue throws", () => {
-        const q = new PriorityQueue({ maxSize: 1 });
+        const q = new PriorityQueue<number>({
+            maxSize: 1,
+            priorityPredicate: (a: number, b: number) => a - b
+        });
 
         q.enqueue(1);
         q.enqueue(2);
@@ -80,7 +93,8 @@ describe("PriorityQueue Main Suite", () => {
     it("Initial data set", () => {
         const items = [2, 1, 4, 3];
         const q = new PriorityQueue<number>({
-            initialData: items
+            initialData: items,
+            priorityPredicate: (a: number, b: number) => a - b
         });
 
         expect(q.count).toEqual(4);

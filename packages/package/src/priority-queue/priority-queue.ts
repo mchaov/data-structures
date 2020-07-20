@@ -3,8 +3,8 @@ export type PriorityQueueTypes = string | number | { [key: string]: any }
 export type PriorityQueuePredicate<T> = (a: T, b: T) => number;
 
 export type PriorityQueueOptions<T> = {
-    maxSize: number
-    initialData: T[]
+    maxSize?: number
+    initialData?: T[]
     priorityPredicate: PriorityQueuePredicate<T>
 }
 
@@ -19,23 +19,26 @@ export interface IPriorityQueue<T extends PriorityQueueTypes> {
     changePriority(priorityPredicate: PriorityQueuePredicate<T>): void
 }
 
+const defaultOptions = {
+    maxSize: 0
+}
+
 export class PriorityQueue<T> implements IPriorityQueue<T> {
     private data: T[] = [];
     private maxSize: number = 0
     private priorityPredicate: PriorityQueuePredicate<T>
 
-    constructor(options: Partial<PriorityQueueOptions<T>> = {}) {
+    constructor(options: PriorityQueueOptions<T> = defaultOptions as any) {
+        const o = { ...defaultOptions, ...options };
+        this.maxSize = o.maxSize;
 
-        this.maxSize = typeof options.maxSize === "undefined" ?
-            0 :
-            options.maxSize;
+        if (typeof o.priorityPredicate === "undefined") {
+            throw new Error("Missing priority predicate");
+        }
+        this.priorityPredicate = o.priorityPredicate;
 
-        this.priorityPredicate = typeof options.priorityPredicate === "undefined" ?
-            ((a, b) => a - b) as any : // refactor not to assume default is number but to throw on missing predicate
-            options.priorityPredicate;
-
-        if (options.initialData) {
-            this.data = options.initialData;
+        if (o.initialData) {
+            this.data = o.initialData;
             this.sort();
         }
     }
