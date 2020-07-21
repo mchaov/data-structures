@@ -4,7 +4,7 @@ function getRndInteger(min: number, max: number) {
 
 export function getTestData(length: number) {
     let time = performance.now();
-    const data = new Array(length).fill(0).map(x => getRndInteger(2, 100000));
+    const data = new Array(length).fill(0).map(x => getRndInteger(2, length));
     console.log(`${data.length} entries generated in: ${performance.now() - time}`);
     return data;
 };
