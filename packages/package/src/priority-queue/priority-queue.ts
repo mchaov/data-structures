@@ -19,14 +19,14 @@ export interface IPriorityQueue<T extends PriorityQueueTypes> {
     changePriority(priorityPredicate: PriorityQueuePredicate<T>): void
 }
 
-const defaultOptions = {
+export const defaultOptions = {
     maxSize: 0
 }
 
 export class PriorityQueue<T> implements IPriorityQueue<T> {
-    private data: T[] = [];
+    protected data: T[] = [];
     private maxSize: number = 0
-    private priorityPredicate: PriorityQueuePredicate<T>
+    protected priorityPredicate: PriorityQueuePredicate<T>
 
     constructor(options: PriorityQueueOptions<T> = defaultOptions as any) {
         const o = { ...defaultOptions, ...options };
@@ -65,7 +65,7 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         this.sort();
     }
 
-    private sort() {
+    protected sort() {
         this.data.sort(this.priorityPredicate);
     }
 
