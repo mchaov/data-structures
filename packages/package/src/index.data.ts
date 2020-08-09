@@ -1,3 +1,5 @@
+// This file is used to generate data for benchmarks
+/* istanbul ignore file */
 function getRndInteger(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }

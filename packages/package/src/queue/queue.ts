@@ -13,7 +13,7 @@ export class Queue<T> implements IQueue<T> {
 
     constructor(maxSize = 0) {
         this.maxSize = maxSize;
-        this.data = new Array(maxSize);
+        this.data = new Array();
     }
 
     clear() { this.data = new Array() }
@@ -22,7 +22,7 @@ export class Queue<T> implements IQueue<T> {
     peek() { return this.data.slice() }
 
     enqueue(element: T) {
-        if (this.maxSize !== 0 && this.count > this.maxSize) {
+        if (this.maxSize !== 0 && this.count >= this.maxSize) {
             throw new Error("queue overflow");
         }
         this.data.push(element);

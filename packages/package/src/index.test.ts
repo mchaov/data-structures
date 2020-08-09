@@ -1,7 +1,7 @@
-import { init } from "./index";
 
 describe("Test of the setup", () => {
     it("tests work", () => {
-        expect(typeof init).toBe("function");
+        const a = () => { }
+        expect(typeof a).toBe("function");
     })
 })
