@@ -16,7 +16,7 @@ export class Stack<T> implements IStack<T> {
         this.data = new Array();
     }
 
-    peek() { return this.data.slice() }
+    peek() { return this.data.slice().reverse() }
     get count() { return this.data.length }
     clear() { this.data = new Array() }
     contains(element: T) { return this.data.indexOf(element) > -1 }

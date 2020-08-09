@@ -68,9 +68,7 @@ describe("Queue Main Suite", () => {
         expect(q.dequeue()).toBe(1);
         expect(() => { q.dequeue() }).toThrow();
     });
-});
 
-describe("Saturation Suite", () => {
     it("FILO", () => {
         const q = new Queue<number>();
 
@@ -81,6 +79,9 @@ describe("Saturation Suite", () => {
         expect(q.dequeue()).toBe(2);
     });
 
+});
+
+describe("Queue Saturation Suite", () => {
     it("With strings", () => {
         const q = new Queue<string>();
 
@@ -108,4 +109,5 @@ describe("Saturation Suite", () => {
         expect(q.dequeue()).toBe(b);
         expect(q.count).toBe(0);
     });
+
 })

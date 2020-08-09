@@ -68,4 +68,45 @@ describe("Stack Main Suite", () => {
         expect(s.contains(2)).toBe(false);
     });
 
+    it("LIFO", () => {
+        const s = new Stack<number>();
+
+        s.push(1);
+        s.push(2);
+        s.push(3);
+
+        expect(s.pop()).toBe(3);
+        expect(s.pop()).toBe(2);
+        expect(s.pop()).toBe(1);
+    })
+})
+
+describe("Stack Saturation Suite", () => {
+    it("With strings", () => {
+        const s = new Stack<string>();
+
+        s.push("a")
+        s.push("b")
+
+        expect(s.peek()).toEqual(["b", "a"])
+        expect(s.pop()).toBe("b")
+        expect(s.pop()).toBe("a")
+
+    })
+
+    it("With objects", () => {
+        type X = { foo: number }
+        const s = new Stack<X>()
+
+        const a = { foo: 1 }
+        const b = { foo: 2 }
+
+        s.push(a)
+        s.push(b)
+
+        expect(s.peek()).toEqual([b, a])
+        expect(s.pop()).toBe(b)
+        expect(s.pop()).toBe(a)
+
+    })
 })
