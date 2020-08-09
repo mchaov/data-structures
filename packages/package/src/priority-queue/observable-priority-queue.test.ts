@@ -1,5 +1,5 @@
 import { OPriorityQueue } from "./observable-priority-queue";
-import { observe } from "mobx";
+// import { observe } from "mobx";
 
 describe("Observable PriorityQueue Main Suite", () => {
     it("Initializes without error", () => {
