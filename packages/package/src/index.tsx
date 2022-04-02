@@ -52,19 +52,21 @@ import { observe, autorun } from "mobx";
 import { OPriorityQueue } from "./priority-queue";
 
 const op = new OPriorityQueue<number>({
-    initialData: getTestData(10000),
+    initialData: getTestData(1000),
     priorityPredicate: (a, b) => a - b
 });
 
 window["op"] = op;
 
-observe(op, "count", (x) => {
-    console.log("count", x)
-});
+console.log(op)
 
-observe(op, "contains", (x) => {
-    console.log("contains", x)
-});
+// observe(op, (x) => {
+//     console.log("count", x)
+// });
+
+// observe(op, "contains", (x) => {
+//     console.log("contains", x)
+// });
 
 autorun(() => {
     console.log("contains", op.contains(12))
@@ -73,7 +75,7 @@ autorun(() => {
     console.log("peek", op.peek())
 })
 
-console.log("wtf")
+// console.log("wtf")
 
 op.enqueue(12);
 op.enqueue(15);

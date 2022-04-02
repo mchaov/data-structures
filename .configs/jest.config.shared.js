@@ -6,7 +6,7 @@ module.exports = (rootDir) => {
     return {
         "globals": {
             "ts-jest": {
-                "tsConfig": "testing-tsconfig.json"
+                "tsconfig": "testing-tsconfig.json"
             }
         },
         "testURL": "http://localhost/",

@@ -11,7 +11,7 @@ describe("Observable PriorityQueue Main Suite", () => {
         expect(() => new OPriorityQueue()).toThrow();
     });
 
-    // mobx reactions throw inside tests ... 
+    // mobx reactions throw inside tests ...
     // TODO: investigate issue with mobx and jest.
     // it("Observable count", done => {
     //     const items = [2, 1, 4, 3];

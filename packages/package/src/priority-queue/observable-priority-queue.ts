@@ -3,7 +3,7 @@ import { createTransformer } from "mobx-utils";
 import { PriorityQueue, PriorityQueueOptions, defaultOptions } from "./priority-queue";
 
 // file igonered from test coverage
-// mobx reactions throw error inside tests ... 
+// mobx reactions throw error inside tests ...
 // TODO: investigate issue with mobx and jest.
 /* istanbul ignore file */
 
@@ -15,8 +15,7 @@ export class OPriorityQueue<T> extends PriorityQueue<T> {
     constructor(options: PriorityQueueOptions<T> = defaultOptions as any) {
         super(options);
 
-        this.data = observable(options.initialData || []);
-        this.sort();
+        this.data = observable.array(options.initialData || []);
 
         this.contains = createTransformer((element: T) => {
             return super.contains(element);
@@ -24,19 +23,19 @@ export class OPriorityQueue<T> extends PriorityQueue<T> {
         this.peek = super.peek;
     }
 
-    @computed get count() { return super.count; }
-
-    @action clear() { super.clear() }
-
-    @action.bound dequeue() {
-        return super.dequeue();
+    @computed get count(): number {
+        return super.count
     }
 
-    @action.bound enqueue(element: T) {
-        super.enqueue(element);
+    clear = action(super.clear.bind(this))
+
+    dequeue = action(super.dequeue.bind(this))
+
+    enqueue = action(super.enqueue.bind(this))
+
+    @action.bound sort() {
+        this.data.sort(this.priorityPredicate);
     }
 
-    @action.bound protected sort() {
-        this.data.replace(this.data.slice().sort(this.priorityPredicate));
-    }
+    changePriority = action(super.changePriority.bind(this))
 }
